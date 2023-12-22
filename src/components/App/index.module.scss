@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 350px;
+  height: 300px;
+}
+
+.separator {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid red;
+  margin: 0 16px;
+}
+
+.combined {
+  position: relative;
+  width: 350px;
+  height: 300px;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.sample {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
