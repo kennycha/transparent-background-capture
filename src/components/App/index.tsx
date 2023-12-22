@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./index.module.scss";
+import Canvas from "../Canvas";
 
 const ASSETS_BASE_URL = "/transparent-background-capture/assets";
 
@@ -9,7 +10,9 @@ const App = () => {
   return (
     <div className={cx("container")}>
       <img src={`${ASSETS_BASE_URL}/background.jpeg`} alt="background" />
-      <img src={`${ASSETS_BASE_URL}/sample.png`} alt="sample" />
+      <div className={cx("canvasWrapper")}>
+        <Canvas />
+      </div>
       <div className={cx("separator")} />
       <div className={cx("combined")}>
         <img

@@ -1,9 +1,14 @@
+img {
+  width: 350px;
+  height: 300px;
+}
+
 .container {
   display: flex;
   align-items: center;
 }
 
-img {
+.canvasWrapper {
   width: 350px;
   height: 300px;
 }
