@@ -6,6 +6,7 @@ img {
 .container {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .canvasWrapper {
@@ -18,8 +19,8 @@ img {
   height: 0;
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
-  border-left: 30px solid red;
-  margin: 0 16px;
+  border-left: 30px solid gray;
+  margin: 0 4px;
 }
 
 .combined {
@@ -38,4 +39,15 @@ img {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.controls {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.extractButton {
+  padding: 4px 8px;
 }
