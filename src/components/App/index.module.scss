@@ -42,12 +42,15 @@ img {
 }
 
 .controls {
+  display: flex;
+  column-gap: 8px;
   position: absolute;
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.extractButton {
+.extractButton,
+.saveImageButton {
   padding: 4px 8px;
 }

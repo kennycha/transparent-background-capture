@@ -1,7 +1,9 @@
+import { useCallback, useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import Canvas from "../Canvas";
 import classNames from "classnames/bind";
 import styles from "./index.module.scss";
-import Canvas from "../Canvas";
-import { useCallback, useState } from "react";
+import { saveUrlAsFile } from "../../utils";
 
 const ASSETS_BASE_URL = "/transparent-background-capture/assets";
 
@@ -10,6 +12,8 @@ const cx = classNames.bind(styles);
 const App = () => {
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas>();
   const [resultImageUrl, setResultImageUrl] = useState<string>();
+
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const initializeFabricCanvas = useCallback((canvas: fabric.Canvas) => {
     setFabricCanvas(canvas);
@@ -28,6 +32,14 @@ const App = () => {
     setResultImageUrl(sourceUrl);
   };
 
+  const handleSaveImageButtonClick = async () => {
+    if (!resultRef.current || !resultImageUrl) return;
+
+    const canvas = await html2canvas(resultRef.current);
+    const url = canvas.toDataURL("image/jpeg");
+    saveUrlAsFile(url, "result.jpeg");
+  };
+
   return (
     <div className={cx("container")}>
       <img src={`${ASSETS_BASE_URL}/background.jpeg`} alt="background" />
@@ -37,7 +49,7 @@ const App = () => {
       <div className={cx("separator")} />
       <img alt="result" src={resultImageUrl} />
       <div className={cx("separator")} />
-      <div className={cx("combined")}>
+      <div className={cx("combined")} ref={resultRef}>
         <img
           className={cx("background")}
           src={`${ASSETS_BASE_URL}/background.jpeg`}
@@ -51,6 +63,13 @@ const App = () => {
           onClick={handleExtractButtonClick}
         >
           Extract
+        </button>
+        <button
+          className={cx("saveImageButton")}
+          disabled={!resultImageUrl}
+          onClick={handleSaveImageButtonClick}
+        >
+          Save Image
         </button>
       </div>
     </div>
